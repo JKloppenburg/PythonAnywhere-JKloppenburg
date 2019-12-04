@@ -1,0 +1,8 @@
+#ignore sqlite3 database (is leeg)
+JKloppenburg/db.sqlite3
+
+#ignore alle bestanden in __pycache__ directories
+__pycache__/
+
+#ignore .pyc, .pyo en .pyd bestanden
+*.py[cod]

@@ -1,0 +1,113 @@
+{% extends "portret/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    <h2>C.V.</h2>
+    <div class="container-cv">
+        <div class="linkerkolom">
+            <img class="foto7" src="{% static 'foto7.png' %}">
+            <h3>Personalia</h3>
+            <p>Name: Jeanette Kloppenburg<br>
+                Geboorteplaats: Gemert<br>
+                Nationaliteit: Nederlandse<br>
+                ZZP'er: sinds 1-8-2000
+            </p>
+            <h3>Vaardigheden</h3>
+            <p> SQL<br>
+                Relational Database<br>
+                Information & Knowledge<br>
+                &nbsp &nbsp Management<br>
+                Power BI<br>
+                Scrum & Agile<br>
+                Disaster & Recovery<br>
+                Excel<br>
+                MySQL<br>
+                Python<br>
+                Django<br>
+                ITIL<br>
+                Application Development<br>
+                Cobol85<br>
+                TMap<br>
+                HP NonStop (Tandem)<br>
+                TACL</p>
+            <h3>Referenties / Aanbevelingen</h3>
+            <p>
+                <a class="linkedin" href="https://nl.linkedin.com/in/jeanette-kloppenburg-7b6a523a/%7Bcountry%3Dnl%2C+language%3Dnl%7D?trk=people-guest_profile-result-card_result-card_full-click">Zie mijn LinkedIn profiel</a>
+            </p>
+            <h3>Languages</h3>
+            <p>
+                Dutch<br>
+                English<br>
+                French<br>
+                German
+            </p>
+            <h3>Hobbies</h3>
+            <p>
+                Running<i class="fas fa-running" style="padding-left:10px"></i><br>
+                Hiking<i class="fas fa-walking" style="padding-left:10px"></i><br>
+                Skiing<i class="fas fa-skiing" style="padding-left:10px"></i><br>
+                Sailing<i class="fas fa-water" style="padding-left:10px"></i>
+            </p>
+        </div>
+
+        <div class="rechterkolom">
+            <h3>Profile</h3>
+            <p>
+                With over 30 years in IT I gained a lot of knowledge and experience. During this time I have had various positions at different organizations. Working with data and SQL has always played a major role for me. Data design, data analysis, data migration, data cleansing and data reporting are in my comfort zone. Creating SQL queries and optimizing the performance of data access is something that I enjoy doing.
+            </p>
+            <p>
+                I have great adaptability. And because I went to an international school, I also speak French, English and German quite well.
+            </p>
+            <p>
+                I think I can say that I am flexible, interested, enthusiastic, accurate, communicative, a good team player, also capable of working independently and always fully committed. For this I also refer to a few recom-mendations on LinkedIn.
+            </p>
+            <h3>Education</h3>
+            <div class="education-links">
+                <p>1975 - 1981<br>
+                   1981 - 1985<br>
+                   1985 - 1989<br>
+                   2005 - 2007<br>
+                </p>
+            </div>
+            <div class="education-rechts">
+                <p>
+                    VWO<br>
+                    Japanology at the State University in Leiden (not completed)<br>
+                    AMBI (accomplished with the following modules: B1, B2, HS1, HS4, I1, I2, S1, S3, T2)<br>
+                    HP Certified Professional Program. Graduated for the following certificates:<br>
+                    - HP Accredited Integration Specialist<br>
+                    - HP Certified Systems Engineer<br>
+                    - HP Certified Systems Developer<br>
+                    - HP Accredited Systems Engineer
+                </p>
+            </div>
+            <h3>Work Experience</h3>
+            {% for assignment in assignment_list %}
+                <div class="werkervaring">
+                    <h4><i class="fa fa-calendar" style="color:blue;margin-left:10px;padding-right:10px"></i> {{assignment.startdate|date:"M Y"}} &nbsp-&nbsp {{assignment.enddate|date:"M Y"}}</h4>
+                    <p><i class="fa fa-building" style="margin-left:10px;padding-right:10px"></i> {{assignment.company}}<br>
+                       <i class="fa fa-globe" style="margin-left:10px;padding-right:10px"></i> {{assignment.city}}<br>
+                    </p>
+                    {% for functie in assignment.job_list %}
+                        <div class="dropdown">
+                            <li><a class="dropbtn" href="#"><i class="fa fa-briefcase" style="padding-right:10px"></i>{{ functie.jobtitle }}</a></li>
+                            <div class="dropdown-content">
+                                {% for activity in activity_list %}
+                                    {% if activity.startdate == assignment.startdate and activity.jobtitle == functie.jobtitle %}
+                                      <div>
+                                          <ul class="z">
+                                               <li>{{activity.jobdetail}}</li>
+                                          <ul/>
+                                      </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <p>
+                        <br>
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

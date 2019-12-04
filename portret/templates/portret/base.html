@@ -1,0 +1,48 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <title>J. Kloppenburg</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body>
+    <header>
+      <img src="{% static 'logo-kop-transparant.png' %}" alt="header">
+      <ul>
+        {% if request.get_full_path != "/home/" and request.get_full_path != "/" %}
+        <li><a class="home-knop" href="{% url 'portret-home' %}"><i class="fas fa-home" style="padding-right: 10px"></i>Home</a></li>
+        {% endif %}
+        {% url 'portret-overmij' as url %}
+        <li><a href="{{ url }}"
+               {% if request.path == url %} class="active"
+               {% else %} class="knop1"
+               {% endif %}>Over mij</a></li>
+        {% url 'portret-cv' as url %}
+        <li><a href="{{ url }}"
+               {% if request.path == url %} class="active"
+               {% else %} class="knop2"
+               {% endif %}>C.V.</a></li>
+        {% url 'portret-contact' as url %}
+        <li><a href="{{ url }}"
+               {% if request.path == url %} class="active"
+               {% else %} class="knop3"
+               {% endif %}>Contact</a></li>
+      </ul>
+    </header>
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

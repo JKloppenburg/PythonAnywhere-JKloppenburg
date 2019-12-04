@@ -1,0 +1,210 @@
+body {
+    background-color: linen;
+}
+
+header {
+    position: relative;
+}
+
+header, header img {
+    width: 100%;
+}
+
+header ul {
+    position: absolute;
+    width: 99%;
+    padding: 0;
+    right: 3%;
+    top: 15%;
+    text-align: right;
+}
+
+header li {
+    display: inline-block;
+    list-style-type: none;
+    font-size: 20px;
+    margin-left: 2%;
+    color: darkblue;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    padding: 10px;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+.home-knop {
+    background-color: rgba(128, 128, 128, 0.2);
+    border-color: grey;
+}
+
+.knop1 {
+    background-color: rgba(255, 0, 0, 0.2);
+    border-color: red;
+}
+
+.knop2 {
+    background-color: rgba(0, 0, 255, 0.2);
+    border-color: blue;
+}
+
+.knop3 {
+    background-color: rgba(255, 255, 0, 0.2);
+    border-color: orange;
+}
+
+a:hover {
+     background-color: white;
+     color: black;
+}
+
+.active {
+    background-color: white;
+    color: black;
+    border-color: silver;
+}
+
+.left-centered {
+    position: absolute;
+    top: 53%;
+    right: 70px;
+    font: 40px lucida handwriting;
+    color: linen;
+}
+
+h2 {
+    font: 30px source-sans-pro;
+    color: black;
+    font-weight: bold;
+    margin: 0;
+}
+
+.display-about-1 img {
+    float: left;
+    width: 10%;
+    padding-right: 20px;
+}
+
+p {
+    float: left;
+    width: 60%;
+    font: 20px source-sans-pro;
+    color: black;
+    padding: 10px;
+}
+
+.display-about-2 img {
+    float: right;
+    width: 20%;
+    padding-right: 20px;
+}
+
+.linkerkolom {
+    float: left;
+    width: 25%;
+    height: 970px;
+   -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    background-color: rgba(192, 192, 192, 0.3);
+    overflow: scroll;
+}
+
+.foto7 {
+    width: 100%;
+}
+
+.rechterkolom {
+    float: right;
+    margin-right: 15px;
+    padding-right: 10px;
+    width: 70%;
+    height: 970px;
+    -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    background-color: rgba(192, 192, 192, 0.3);
+    overflow: scroll;
+ }
+
+ .container-cv h3 {
+    font: 25px source-sans-pro;
+    color: black;
+    font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 0px;
+ }
+ .container-cv p {
+    width: 100%;
+    float: left;
+    font: 20px source-sans-pro;
+    color: black;
+    margin: 0px 0px 0px 5px;
+ }
+
+ .linkedin {
+    border: none;
+    font: 20px source-sans-pro;
+    color: black;
+    padding: 5px 0px 5px 0px;
+ }
+
+.education-links {
+    width: 15%;
+    float: left;
+ }
+
+.education-rechts {
+    width: 85%;
+    float: left;
+}
+
+.werkervaring h4 {
+    clear: both;
+    float: none;
+    font: 20px source-sans-pro;
+    color: blue;
+    width: 100%;
+    margin: 5px 0px 0px 10px;
+ }
+
+.dropbtn {
+  color: black;
+  margin-left: 25px;
+  padding: 0px 0px 0px 0px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.dropdown {
+    display: block;
+    list-style-type: none;
+}
+
+.dropdown-content {
+  display: none;
+  float: none;
+  color: black;
+  width: 800px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  font: 20px source-sans-pro;
+  margin-left: 25px;
+}
+
+.dropdown-content ul.z {
+    display: block;
+    list-style-type: circle;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  float: left;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: white;
+}
+
