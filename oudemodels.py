@@ -6,18 +6,10 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.db.models.deletion import CASCADE, DO_NOTHING
+from compositefk.fields import CompositeForeignKey, CompositeOneToOneField
 
 
-class Activity(models.Model):
-    startdate = models.ForeignKey('Job', models.DO_NOTHING, db_column='StartDate', primary_key=True)  # Field name made lowercase.
-    jobtitle = models.ForeignKey('Job', models.DO_NOTHING, db_column='JobTitle')  # Field name made lowercase.
-    rownumber = models.IntegerField(db_column='RowNumber')  # Field name made lowercase.
-    jobdetail = models.TextField(db_column='JobDetail', blank=True, null=True)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'activity'
-        unique_together = (('startdate', 'jobtitle', 'rownumber'),)
 
 
 class Assignment(models.Model):
@@ -142,10 +134,28 @@ class DjangoSession(models.Model):
 
 
 class Job(models.Model):
-    startdate = models.ForeignKey(Assignment, models.DO_NOTHING, db_column='StartDate', primary_key=True)  # Field name made lowercase.
+    startdate = models.ForeignKey(Assignment, models.DO_NOTHING, db_column='StartDate', primary_key=True, related_name = 'job')  # Field name made lowercase.
     jobtitle = models.CharField(db_column='JobTitle', max_length=40)  # Field name made lowercase.
 
     class Meta:
         managed = False
         db_table = 'job'
         unique_together = (('startdate', 'jobtitle'),)
+
+class Activity(models.Model):
+    startdate = models.DateField(db_column='StartDate', primary_key=True)  # Field name made lowercase.
+    jobtitle = models.CharField(db_column='JobTitle', max_length=40)  # Field name made lowercase.
+    rownumber = models.IntegerField(db_column='RowNumber')  # Field name made lowercase.
+    jobdetail = models.TextField(db_column='JobDetail', blank=True, null=True)  # Field name made lowercase.
+    #virtual field
+    job = CompositeOneToOneField(
+        Job,
+        on_delete = CASCADE,
+        related_name = 'activity',
+        to_fields=('startdate','jobtitle')
+        )
+
+    class Meta:
+        managed = False
+        db_table = 'activity'
+        unique_together = (('startdate', 'jobtitle', 'rownumber'),)
