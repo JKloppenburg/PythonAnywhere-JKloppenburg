@@ -77,10 +77,11 @@ WSGI_APPLICATION = 'JKloppenburg.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('MYSQL_ENGINE'),
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'jkloppenburg',
         'USER': os.environ.get('MYSQL_USER'),
-        'PASSWORD': os.environ.get('MYSQL_PW')
+        'PASSWORD': os.environ.get('MYSQL_PW'),
+        'HOST': os.environ.get('MYSQL_HOST'),
     }
 }
 
