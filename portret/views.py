@@ -4,8 +4,8 @@ from django.db.models import Prefetch, Count
 def home(request):
     return render(request, 'portret/home.html')
 
-def overmij(request):
-    return render(request, 'portret/overmij.html')
+def info(request):
+    return render(request, 'portret/info.html')
 
 def cv(request):
     opdracht_list = Opdracht.objects.order_by('-startdatum').all().prefetch_related(Prefetch('functie',queryset=Functie.objects.all(), to_attr='functie_list'))
