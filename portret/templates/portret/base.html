@@ -35,6 +35,21 @@
                {% endif %}>Contact</a></li>
       </ul>
     </header>
+
+     <div class="row">
+        <div class="col-md-8">
+          {% if messages %}
+            {% for message in messages %}
+                <br>
+                <br>
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+     </div>
+
     <div class="container">
       {% block content %}{% endblock %}
     </div>

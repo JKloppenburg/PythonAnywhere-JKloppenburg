@@ -1,0 +1,17 @@
+{% extends "portret/base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<br>
+<br>
+<h2>Contact</h2>
+<body style="background-color:linen">
+    <form role="form" action="" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit">Verstuur</button>
+    </form>
+</body>
+{% endblock %}
