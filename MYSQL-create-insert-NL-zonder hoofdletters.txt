@@ -1,0 +1,229 @@
+
+use JKloppenburg_database;
+
+CREATE TABLE opdracht (
+	StartDatum DATE NOT NULL,
+	EindDatum DATE DEFAULT NULL,
+	Bedrijf VARCHAR(40) NOT NULL,
+	Stad VARCHAR(40) NOT NULL,
+	PRIMARY KEY (StartDatum)
+) ENGINE=INNODB;
+
+CREATE TABLE functie (
+	StartDatum DATE NOT NULL,
+	FunctieNaam VARCHAR(40) NOT NULL,
+	PRIMARY KEY (StartDatum, FunctieNaam),
+	FOREIGN KEY (StartDatum)
+	REFERENCES opdracht(StartDatum)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE=INNODB;
+
+CREATE TABLE activiteit (
+	StartDatum DATE NOT NULL,
+	FunctieNaam VARCHAR(40) NOT NULL,
+	RijNummer TINYINT,
+	DetailRegel TEXT,
+	PRIMARY KEY (StartDatum, FunctieNaam, RijNummer),
+	FOREIGN KEY (StartDatum, FunctieNaam)
+	REFERENCES functie(StartDatum, FunctieNaam)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE=INNODB;
+
+CREATE TABLE opleidingen (
+	Opleiding_id INT AUTO_INCREMENT PRIMARY KEY,
+	Startjaar YEAR NOT NULL,
+	Eindjaar YEAR,
+	Opleiding VARCHAR(80) NOT NULL,
+	Document VARCHAR(80)
+);
+
+INSERT INTO opdracht 
+VALUES 
+	('2018-08-01', '2019-03-31', 'ING Bank', 'Amsterdam'),
+	('2018-01-22', '2018-07-31', 'ING Bank', 'Amsterdam'),
+	('2011-01-01', '2017-09-30', 'ATOS', 'Rijswijk & Zoetermeer'),
+	('2009-08-01', '2010-12-31', 'EuroShell', 'Rotterdam'),
+	('2009-01-01', '2009-05-31', 'Rabobank', 'Zeist'),
+	('2005-08-01', '2008-12-31', 'ATOS', 'Rijswijk'),
+	('2002-01-01', '2005-07-31', 'Rabobank', 'Utrecht'),
+	('2001-04-01', '2001-09-30', 'Rabobank', 'Zeist'),
+	('1998-09-01', '2001-03-31', 'Interpay', 'Utrecht'),
+	('1997-12-01', '1998-08-31', 'Rabobank', 'Zeist'),
+	('1995-09-01', '1997-11-30', 'ING Bank', 'Amsterdam'),
+	('1990-05-01', '1995-08-31', 'Fokker Aircraft b.v.', 'Schiphol Oost & Amsterdam Zuid-Oost'),
+	('1986-11-01', '1990-04-30', 'Min. van Defensie - Koninklijke Marine', 'Den Haag'),
+	('1985-08-01', '1986-10-31', 'Min. van Defensie', 'Den Haag & Maasland');
+
+INSERT INTO functie
+VALUES
+	('2018-08-01', 'IT Engineer'),
+	('2018-08-01', 'Data Engineer'),
+	('2018-01-22', 'IT Engineer'),
+	('2018-01-22', 'Data Engineer'),
+	('2018-01-22', 'Data Analist'),
+	('2011-01-01', 'DBA / Data Engineer'),
+	('2011-01-01', 'Data Analist / Business Analist'),
+	('2011-01-01', 'Data Migratie Specialist'),
+	('2011-01-01', 'Disaster & Recovery Specialist'),
+	('2009-08-01', 'Applicatie Beheerder'),
+	('2009-08-01', 'Data Migratie Specialist'),
+	('2009-08-01', 'Tester / Test Management'),
+	('2009-01-01', 'Applicatie Beheerder'),
+	('2009-01-01', 'Tester'),
+	('2005-08-01', 'DBA / Data Engineer'),
+	('2005-08-01', 'Data Analist / Business Analist'),
+	('2005-08-01', 'Data Migratie Specialist'),
+	('2005-08-01', 'Disaster & Recovery Specialist'),
+	('2002-01-01', 'Applicatie Beheerder'),
+	('2002-01-01', 'Data Engineer'),
+	('2002-01-01', 'Tester'),
+	('2001-04-01', 'DBA'),
+	('2001-04-01', 'Data Engineer'),
+	('2001-04-01', 'Tester'),
+	('1998-09-01', 'DBA'),
+	('1998-09-01', 'Tester / Test Management'),
+	('1997-12-01', 'DBA'),
+	('1997-12-01', 'Tester'),
+	('1995-09-01', 'DBA'),
+	('1995-09-01', 'Applicatie Beheerder'),
+	('1990-05-01', 'DBA'),
+	('1990-05-01', 'Tester'),
+	('1986-11-01', 'Programmer'),
+	('1986-11-01', 'DBA'),
+	('1985-08-01', 'System Developer')
+;
+	
+INSERT INTO activiteit
+VALUES
+	('2018-08-01', 'IT Engineer', 1, 'Voorbereiden hardware migratie. Configuratiewijzigingen ten opzichte van de huidige machine in kaart gebracht. De impact van de wijzigingen op de inrichting en het beheer bepaald.'),
+	('2018-08-01', 'IT Engineer', 2, 'Security op de nieuwe machines ingericht conform de ING werkwijze.'),
+	('2018-08-01', 'Data Engineer', 1, 'Oplossen performance problemen meestal m.b.t. database access (SQL) in COBOL programmatuur.'),
+	('2018-08-01', 'Data Engineer', 2, 'Backup proces geactualiseerd. Uitgezocht wat er ge-backup-t werd. Dat aangepast naar de huidige eisen. En backups die lang bewaard moeten worden omgezet naar archivering in Isilon. Voor dit alles tools ontworpen en gebouwd, documentatie opgesteld en overdracht aan collega’s gegeven.'),
+	('2018-08-01', 'Data Engineer', 3, 'Data synchronisatie configureren rekening houdend met de hardware wijzigingen.'),
+	('2018-01-22', 'IT Engineer', 1, 'Beheerder van de dag, monitor dienst en waakdienst verantwoordelijkheid per toerbeurt.'),
+	('2018-01-22', 'IT Engineer', 2, 'Softwarelibrary gemigreerd van het CARDS systeem naar het RAK systeem.'),
+	('2018-01-22', 'IT Engineer', 3, 'Security beheer en aanpassingen uitgevoerd om aan te blijven sluiten op de actuele situatie.'),
+	('2018-01-22', 'IT Engineer', 4, 'Inventarisatie backups i.v.m. wijziging m.b.t. archivering naar Isilon.'),
+	('2018-01-22', 'Data Engineer', 1, 'Performance bewaking m.b.t. database access.'),
+	('2018-01-22', 'Data Engineer', 2, 'Data synchronisatie uitgebreid i.v.m. aanpassing in Saldo Refresh.'),
+	('2018-01-22', 'Data Analist', 1, 'Uitvoeren van data controles, data analyses en data schoning.'),
+	('2018-01-22', 'Data Analist', 2, 'Problemen en fouten in financiële data analyseren, veelal gebruik makend van SQL. Hierbij logs uitpluizen. Resultaat presenteren aan, en bespreken met de business. Indien gewenst wijziging aanbrengen middels SQL updates.'),
+	('2011-01-01', 'DBA / Data Engineer', 1, 'Volledige verantwoordelijkheid over het voorbereiden, plannen, coördineren en implementeren van database wijzigingen volgens OTAP principe.'),
+	('2011-01-01', 'DBA / Data Engineer', 2, 'Bewaken van consequenties voor het uitwijk systeem.'),
+	('2011-01-01', 'DBA / Data Engineer', 3, 'Onderricht en ondersteuning leveren aan Indiase collega’s.'),
+	('2011-01-01', 'DBA / Data Engineer', 4, 'Controleren en bewaken data toegangspaden van de programmatuur i.v.m. performance en resource gebruik. Daar waar nodig zorgen voor een aanpassing.'),
+	('2011-01-01', 'DBA / Data Engineer', 5, 'Metingen uitvoeren en performance verbeteringen aanbrengen.'),
+	('2011-01-01', 'Data Analist / Business Analist', 1, 'Verantwoordelijk voor het op ad hoc basis opleveren van informatie voor de business. Daarbij gesprekken met de aanvrager voeren om duidelijk te krijgen welke data precies benodigd was. Dit vertaalde ik naar SQL query’s zodat de aanvrager de juiste informatie opgeleverd kreeg.'),
+	('2011-01-01', 'Data Analist / Business Analist', 2, 'Betrokken bij projecten voor data gerelateerde zaken.'),
+	('2011-01-01', 'Data Migratie Specialist', 1, 'Meerdere omvangrijke data migraties uitgevoerd met minimale downtijd. Het ging hierbij telkens om een hoeveelheid data die niet in één weekend over te zetten was. Ik heb daarom een plan opgesteld om de data in delen over te zetten en ieder overgezet deel telkens “in sync” te houden met het productie systeem. Op deze manier hield ik de datamigratie overzichtelijk, ordentelijk, controleerbaar, beheersbaar, eenvoudig, compleet en volgens planning. De enige downtijd was tijdens het migratie weekend en deze was slechts van korte duur.'),
+	('2011-01-01', 'Data Migratie Specialist', 2, 'Migratie plan opgesteld en gepresenteerd aan de business die er vertrouwen in had en er goedkeuring voor gaf.'),
+	('2011-01-01', 'Data Migratie Specialist', 3, 'Configuratie van synchronisatie (pipeline) tussen productie en het nieuwe systeem. Na de migratie is dit tijdelijk omgedraaid zodat er korte tijd nog teruggevallen kon worden op het oude systeem.'),
+	('2011-01-01', 'Data Migratie Specialist', 4, 'Bewijzen van compleetheid en juistheid van de migratiewerkzaamheden aangeleverd aan de business.'),
+	('2011-01-01', 'Data Migratie Specialist', 5, 'Tools gebouwd om delen van het migratie proces te automatiseren.'),
+	('2011-01-01', 'Data Migratie Specialist', 6, 'Tools gebouwd om de gemigreerde data te monitoren en te controleren.'),
+	('2011-01-01', 'Data Migratie Specialist', 7, 'Gebruik gemaakt van Excel tijdens de planning en de uitvoering van de werkzaamheden.'),
+	('2011-01-01', 'Disaster & Recovery Specialist', 1, 'Inrichten van de uitwijk machine.'),
+	('2011-01-01', 'Disaster & Recovery Specialist', 2, 'Configuratie van synchronisatie (pipeline) tussen productie en uitwijk.'),
+	('2011-01-01', 'Disaster & Recovery Specialist', 3, 'Beheer van het uitwijkdraaiboek; bijstellen indien er zich veranderingen voordoen aan de infrastructuur, applicatie of organisatie die invloed hebben op het uitwijk proces.'),
+	('2011-01-01', 'Disaster & Recovery Specialist', 4, 'Uitwijksysteem monitoren en controles tussen het productiesysteem en het uitwijksysteem uitvoeren.'),
+	('2011-01-01', 'Disaster & Recovery Specialist', 5, 'M.b.t. het beheer en de data controle van de uitwijkomgeving heb ik zelf tools gemaakt.'),
+	('2011-01-01', 'Disaster & Recovery Specialist', 6, 'Maandelijks status rapportage van de uitwijkomgeving opleveren.'),
+	('2009-08-01', 'Applicatie Beheerder', 1, 'Technisch beheer van verschillende applicaties.'),
+	('2009-08-01', 'Applicatie Beheerder', 2, 'Per toerbeurt verantwoordelijk voor monitor dienst.'),
+	('2009-08-01', 'Applicatie Beheerder', 3, 'Incident, change & problem management.'),
+	('2009-08-01', 'Data Migratie Specialist', 1, 'Data migratie naar nieuwe hardware uitgedacht, besproken en bepaald welke methodes hiervoor te gebruiken.'),
+	('2009-08-01', 'Data Migratie Specialist', 2, 'Migratie tijdschema’s en draaiboeken opgesteld.'),
+	('2009-08-01', 'Data Migratie Specialist', 3, 'Migraties van 29 applicatieomgevingen probleemloos uitgevoerd.'),
+	('2009-08-01', 'Tester / Test Management', 1, 'Testomgevingen inrichten, beheren en onderhouden.'),
+	('2009-08-01', 'Tester / Test Management', 2, 'Ontwikkel-, systeem-, en productie acceptatietests uitgevoerd inclusief metingen gericht op performance.'),
+	('2009-08-01', 'Tester / Test Management', 3, 'Opleveren test rapportages.'),
+	('2009-01-01', 'Applicatie Beheerder', 1, 'Uitvoeren beheertaken; systeem- en applicatie controles. Waar nodig akties ondernemen om problemen te voorkomen.'),
+	('2009-01-01', 'Applicatie Beheerder', 2, 'Monitordienst; incidenten oppakken en oplossen.'),
+	('2009-01-01', 'Applicatie Beheerder', 3, 'Deelname aan projecten. Rekening houdend met consequenties voor uitwijk.'),
+	('2009-01-01', 'Tester', 1, 'Ontwikkel-, systeem-, en productie acceptatietests uitgevoerd inclusief metingen gericht op performance.'),
+	('2009-01-01', 'Tester', 2, 'Opleveren test rapportages.'),
+	('2005-08-01', 'DBA / Data Engineer', 1, 'Database beheer; o.a. groei tabellen monitoren en optimaal partitioneren van tabellen.'),
+	('2005-08-01', 'DBA / Data Engineer', 2, 'Ervoor gezorgd dat de statistieken op de hele database bijgewerkt werden en bijgehouden worden. Hiervoor heb ik een aantal tools gebouwd. Onderzocht wat het effect op de toegangspaden was en daar waar  nodig de statistieken handmatig aangepast om optimale toegangspaden te waarborgen.'),
+	('2005-08-01', 'DBA / Data Engineer', 3, 'Middels tooling de toegangspaden van de programmatuur, van voor en na database wijzigingen of implementatie van nieuwe releases, vergelijken en controleren. Daar waar nodig zorgen voor een aanpassing.'),
+	('2005-08-01', 'Data Analist / Business Analist', 1, 'Verantwoordelijk voor het op ad hoc basis opleveren van informatie voor de business. Daarbij gesprekken met de aanvrager voeren om duidelijk te krijgen welke data precies benodigd was. Dit vertaalde ik naar SQL query’s zodat de aanvrager de juiste informatie opgeleverd kreeg.'),
+	('2005-08-01', 'Data Analist / Business Analist', 2, 'Betrokken bij projecten voor data gerelateerde zaken.'),
+	('2005-08-01', 'Data Migratie Specialist', 1, 'Data migratie uitgevoerd met minimale downtijd. Het plannen, voorbereiden, verantwoorden en uitvoeren van de database migratie heb ik geheel zelfstandig gedaan. Hierbij heb ik gebruik gemaakt van synchronisatie tools Autosync en RDF. Het configureren van de synchronisatie tools behoorde ook tot mijn rol.'),
+	('2005-08-01', 'Disaster & Recovery Specialist', 1, 'Van scratch af aan inrichten van een uitwijk omgeving, zowel technisch als procedureel.'),
+	('2005-08-01', 'Disaster & Recovery Specialist', 2, 'Configuratie van synchronisatie (pipeline) tussen productie en uitwijk.'),
+	('2005-08-01', 'Disaster & Recovery Specialist', 3, 'Uitwijkdraaiboek opgesteld.'),
+	('2005-08-01', 'Disaster & Recovery Specialist', 4, 'Beheer van het uitwijkdraaiboek; bijstellen indien er zich veranderingen voordoen aan de infrastructuur, applicatie of organisatie die invloed hebben op het uitwijk proces.'),
+	('2002-01-01', 'Applicatie Beheerder', 1, 'Deelname aan verschillende projecten.'),
+	('2002-01-01', 'Applicatie Beheerder', 2, 'Vanaf ontwerp fase neerleggen en bewaken van eisen en wensen vanuit beheer en exploitatie.'),
+	('2002-01-01', 'Applicatie Beheerder', 3, 'Opstellen implementatie draaiboeken. Implementeren volgens OTAP principe.'),
+	('2002-01-01', 'Applicatie Beheerder', 4, 'Opzetten technisch beheer en consultancy bij de realisatie van een nieuwe applicatie.'),
+	('2002-01-01', 'Data Engineer', 1, 'Inrichten en gebruik maken van het monitoring-dashboard-tool ASAP.'),
+	('2002-01-01', 'Data Engineer', 2, 'Inrichten berichtenverkeer in MQ.'),
+	('2002-01-01', 'Data Engineer', 3, 'Meegewerkt aan project waarbij Connect:Direct (pipeline) gebruikt wordt voor het overzenden van bestanden van het ene platform naar een andere.'),
+	('2002-01-01', 'Tester', 1, 'Gebruikers acceptatie tests begeleiden.'),
+	('2002-01-01', 'Tester', 2, 'Plannen en uitvoeren van productie acceptatie testen inclusief metingen gericht op performance en het productie rijp maken van de opgeleverde change.'),
+	('2002-01-01', 'Tester', 3, 'Inrichten test omgevingen.'),
+	('2001-04-01', 'DBA', 1, 'Conceptueel en technisch database ontwerp.'),
+	('2001-04-01', 'DBA', 2, 'Implementeren, aanpassen, testen en werkend maken van tools en procedures in de verschillende omgevingen.'),
+	('2001-04-01', 'DBA', 3, 'Begeleiden ODBC gebruik. Oplossen ODBC problemen. Optimaliseren ODBC instellingen.'),
+	('2001-04-01', 'Data Engineer', 1, 'Migreren Data Warehouse naar nieuwe hardware. Data schonen en overzetten. Tools en procedures testen en werkend maken.'),
+	('2001-04-01', 'Data Engineer', 2, 'Inrichten en beheren Data Warehouse.'),
+	('2001-04-01', 'Tester', 1, 'Ontwikkel-, systeem-, en productie acceptatietests uitgevoerd inclusief metingen gericht op performance.'),
+	('2001-04-01', 'Tester', 2, 'Opleveren test rapportages.'),
+	('1998-09-01', 'DBA', 1, 'Inrichten productie systeem; Monitoring, scheduling en auditing configureren.'),
+	('1998-09-01', 'DBA', 2, 'Voorbereiding in productie name van de applicatie.'),
+	('1998-09-01', 'DBA', 3, 'Backup en housekeeping jobs ontwikkelen en schedulen.'),
+	('1998-09-01', 'DBA', 4, 'Reviewen en sizen database model. Schijf/cpu-spreidingsmodel opzetten.'),
+	('1998-09-01', 'DBA', 5, 'Database en applicatie implementeren, tunen en documenteren.'),
+	('1998-09-01', 'DBA', 6, 'Opstellen en testen database recovery scenario’s.'),
+	('1998-09-01', 'DBA', 7, 'Begeleiden trainees en aansturen systeem programmeurs.'),
+	('1998-09-01', 'DBA', 8, 'Applicatie performance verbeteren. Metingen uitvoeren om bottlenecks te vinden. Oplossingen bedenken en implementeren.'),
+	('1998-09-01', 'DBA', 9, 'Meewerken aan in gebruik name van ITIL processen.'),
+	('1998-09-01', 'DBA', 10, 'Meewerken aan migratie naar nieuwe hardware.'),
+	('1998-09-01', 'DBA', 11, 'ODBC installeren en ondersteuning bieden bij het gebruik ervan.'),
+	('1998-09-01', 'Tester / Test Management', 1, 'Beheer en onderhoud van test applicatie omgevingen en van het test- en ontwikkel systeem.'),
+	('1998-09-01', 'Tester / Test Management', 2, 'Ondersteuning bieden aan testers en ontwikkelaars.'),
+	('1997-12-01', 'DBA', 1, 'Beheer Data Warehouse.'),
+	('1997-12-01', 'DBA', 2, 'Verversen, archiveren en schonen van data.'),
+	('1997-12-01', 'DBA', 3, 'Tabelwijzigingen doorvoeren.'),
+	('1997-12-01', 'DBA', 4, 'Onderzoeken en oplossen van performance problemen.'),
+	('1997-12-01', 'DBA', 5, 'Beheer van GQL modellen en ODBC views om data aan eindgebruikers beschikbaar te stellen.'),
+	('1997-12-01', 'Tester', 1, 'Opzetten testomgevingen.'),
+	('1995-09-01', 'DBA', 1, 'Performance en tuning van diverse databases.'),
+	('1995-09-01', 'DBA', 2, 'Meegewerkt aan project centralisering DBA taken Tandem.'),
+	('1995-09-01', 'Applicatie Beheerder', 1, 'Onderzoek gedaan naar versiebeheertool.'),
+	('1995-09-01', 'Applicatie Beheerder', 2, 'Inrichten versiebeheertool RMS.'),
+	('1995-09-01', 'Applicatie Beheerder', 3, 'In het kader van de invoering van RMS, diverse presentaties gehouden, m.b.t. de uitgewerkte inrichtingskeuzes, voor zowel gebruikers als ook management. Documentatie en handleidingen opgesteld m.b.t. het gebruik van de versiebeheertool.'),
+	('1990-05-01', 'DBA', 1, 'Conceptueel en technisch database ontwerp en implementatie.'),
+	('1990-05-01', 'DBA', 2, 'Performance problemen analyseren en suggesties doen ter verbetering.'),
+	('1990-05-01', 'DBA', 3, 'Opstellen implementatie draaiboeken. Implementeren volgens OTAP principe.'),
+	('1990-05-01', 'DBA', 4, 'Beheer van applicaties en oplossen van storingen.'),
+	('1990-05-01', 'DBA', 5, 'Meegewerkt aan in gebruik name nieuwe hardware.'),
+	('1990-05-01', 'DBA', 6, 'Oplossen problemen in IDMS netwerk database, waaronder een broken chain.'),
+	('1990-05-01', 'DBA', 7, 'Deelname aan het project implementatie Factory Control Management System op  het TANDEM platform. Behalve het inrichten en in gebruik nemen van het aangeschafte fabrieksbesturingssoftwarepakket behelsde dit ook het implementeren en tunen van een TANDEM platform'),
+	('1990-05-01', 'Tester', 1, 'Testen van nieuwe releases.'),
+	('1986-11-01', 'Programmer', 1, 'COBOL programma’s ontworpen en geschreven.'),
+	('1986-11-01', 'DBA', 1, 'Beheer van een IDMS (netwerk) database.'),
+	('1986-11-01', 'DBA', 2, 'Verantwoordelijk voor het plannen, coördineren en implementeren van database wijzigingen.'),
+	('1985-08-01', 'System Developer', 1, 'Urgentie opleiding tot Systeem Ontwerper gevolgd. Dit bestond uit het behalen van AMBI modules, het volgen van interne opleidingen en het uitvoeren van stage opdrachten.')
+;
+
+INSERT INTO opleidingen(Startjaar, Eindjaar, Opleiding, Document)
+VALUES
+	('1975', '1981', 'VWO', 'VWO diploma.pdf'),
+	('1981', '1985', 'Japanologie aan de Rijksuniversiteit te Leiden (niet afgerond', ''),
+	('1985', '1989', 'AMBI (HBO)', 'AMBI diploma.pdf'),
+	('1985', '1989', 'afgerond met de volgende modules: B1, B2, HS1, HS4, I1, I2, S1, S3, T2', ''),
+	('2000', '2000', 'ITIL Foundation', 'ITIL Foundation.pdf'), 
+	('2005', '2007', 'HP Certified Professional Program. De volgende certificaten behaald:', ''),
+	('2005', '2007', '- HP Accredited Integration Specialist', 'HP Accredited Integration Specialist.pdf'),
+	('2005', '2007', '- HP Certified Systems Engineer', 'HP Accredited Integration Specialist.pdf'),
+	('2005', '2007', '- HP Certified Systems Developer', 'HP Certified Systems Developer.pdf'),
+	('2005', '2007', '- HP Accredited Systems Engineer', 'HP Accredited Systems Engineer.pdf'),
+	('2019', '2019', 'Power BI (Microsoft Learn: Analytics rapporten maken en gebruiken met Power BI)', 'Analytics-rapporten maken en gebruiken met Power BI - Learn _ Microsoft Docs.pdf'),
+	('2019', '2019', 'Azure (Microsoft Learn: Basisinformatie over Azure)', 'Basisinformatie over Azure - Learn _ Microsoft Docs.pdf'),
+	('2020', '2020', '365 Data Science (mee bezig)', 'combine-all-certificates-pdf.pdf')
+;	
+
+

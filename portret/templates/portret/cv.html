@@ -6,7 +6,7 @@
         <div class="linkerkolom">
             <img class="foto7" src="{% static 'foto7.png' %}">
             <h3>Personalia</h3>
-            <p>Name: Jeanette Kloppenburg<br>
+            <p>Naam: Jeanette Kloppenburg<br>
                 Geboorteplaats: Gemert<br>
                 Nationaliteit: Nederlandse<br>
                 ZZP'er: sinds 1-8-2000
@@ -14,9 +14,12 @@
             <h3>Vaardigheden</h3>
             <p> SQL<br>
                 Relational Database<br>
+                Database ontwerp en beheer<br>
+                Data Analyse<br>
                 Information & Knowledge<br>
                 &nbsp &nbsp Management<br>
                 Power BI<br>
+                Tableau<br>
                 Scrum & Agile<br>
                 Disaster & Recovery<br>
                 Excel<br>
@@ -55,46 +58,80 @@
         </div>
 
         <div class="rechterkolom">
-            <h3>Profile</h3>
+            <h3>Profiel</h3>
             <p>
-                Met ruim 30 jaar in de IT heb ik heel wat kennis en ervaring opgebouwd. Gedurende deze tijd heb ik verschillende rollen vervuld bij verschillende organisaties. Het werken met data en SQL heeft voor mij altijd wel de boventoon gevoerd. Data ontwerp, data analyse, data migratie, data schoning en data rapportage zijn bekend terrein voor mij. SQL query’s opstellen en de performance van data access optimaliseren is iets waar ik me graag mee bezig hou.
+                Gemotiveerde BI Specialist - Data Analist. Met ruim 30 jaar in de IT heb ik heel wat kennis en ervaring opgebouwd. Gedurende deze tijd heb ik verschillende rollen vervuld bij verschillende organisaties. Het werken met data, databases en SQL is een rode draad in mijn carrière. Ik heb mij bekwaamd in alle bouwstenen die benodigd zijn om informatie te extraheren, presenteren en visualiseren uit grote hoeveelheden data.
             </p>
             <p>
-                Ik beschik over een groot aanpassingsvermogen. En omdat ik op een internationale school heb gezeten beheers ik ook redelijk goed de Franse, Engelse en Duitse taal.
+                Ik beschik over een groot inleving- en aanpassingsvermogen. En omdat ik op een internationale school heb gezeten beheers ik ook redelijk goed de Franse, Engelse en Duitse taal.
             </p>
             <p>
-                Ik denk dat ik kan zeggen dat ik flexibel, geïnteresseerd, enthousiast, nauwkeurig, communicatief vaardig, een goede team-player ben, ook goed zelfstandig kan werken en me altijd volledig inzet. Ik ben gewend om in een mannenwereld te opereren.
+                Ik denk dat ik kan zeggen dat ik analytisch, flexibel, geïnteresseerd, leergierig, enthousiast, nauwkeurig, communicatief vaardig, een goede team-player ben, ook goed zelfstandig kan werken en me altijd volledig inzet. Ik ben gewend om in een mannenwereld te opereren.
             </p>
-            <h3>Education</h3>
-            <div class="education-links">
-                <p>1975 - 1981<br>
-                   1981 - 1985<br>
-                   1985 - 1989<br>
-                    <br>
-                   2005 - 2007<br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                   2019
-                </p>
+
+            <h3>Opleidingen</h3>
+            <div class="klik-bericht">
+               <p>Klik op een opleiding hieronder om diploma of certificaat te zien</p>
             </div>
-            <div class="education-rechts">
-                <p>
-                    VWO<br>
-                    Japanologie aan de Rijksuniversiteit te Leiden (niet afgerond)<br>
-                    AMBI (HBO)<br>
-                    afgerond met de volgende modules: B1, B2, HS1, HS4, I1, I2, S1, S3, T2<br>
-                    HP Certified Professional Program. De volgende HP NonStop certificaten behaald:<br>
-                    - HP Accredited Integration Specialist<br>
-                    - HP Certified Systems Engineer<br>
-                    - HP Certified Systems Developer<br>
-                    - HP Accredited Systems Engineer<br>
-                    Power BI (Microsoft Learn: Analytics rapporten maken en gebruiken met Power BI)<br>
-                    Azure (Microsoft Learn: Basisinformatie over Azure)
-                </p>
+            <div class="opleidingen-lijst">
+                <table>
+                    <tr style="height:0px;">
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    {% for cursus in opleidingen_list %}
+                        <tr>
+                        {% ifchanged cursus.startjaar %}
+                            <td style="padding-right: 4px">{{cursus.startjaar}}</td>
+                            {% if cursus.eindjaar == cursus.startjaar %}
+                                <td></td>
+                                <td></td>
+                            {% else %}
+                                <td style="padding-right: 4px">-</td>
+                                <td style="padding-right: 20px">{{cursus.eindjaar}}</td>
+                            {% endif %}
+                        {% else %}
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        {% endifchanged %}
+
+                        {% if cursus.document != "" %}
+                           <td>
+                                <script>
+                                window.addEventListener('mouseup', function(event){
+                                    var box = document.getElementById("popup{{cursus.opleiding_id}}");
+                                    if (event.target != box) {box.style.display = 'none';}
+                                    });
+                                </script>
+                                <div class="popup" id="popup{{cursus.opleiding_id}}">
+                                   <div class="popup-content">
+                                        <div class="close-btn" onclick="closePopup{{cursus.opleiding_id}}()">&times;</div>
+                                        <embed class="popup-doc" src="{% static cursus.document %}#toolbar=0" type="application/pdf" style="width: 100%; height:100%" />
+                                   </div>
+                                </div>
+                                <button class=myBtn onclick="openPopup{{cursus.opleiding_id}}()">{{cursus.opleiding}}</button>
+                                <script>
+                                function closePopup{{cursus.opleiding_id}}(){document.getElementById("popup{{cursus.opleiding_id}}").style.display = 'none';}
+                                function openPopup{{cursus.opleiding_id}}(){document.getElementById("popup{{cursus.opleiding_id}}").style.display = 'block';}
+                                </script>
+
+<!--                                <script>
+                                function togglePopup{{cursus.opleiding_id}}(){document.getElementById("popup{{cursus.opleiding_id}}").classList.toggle("active");}
+                                </script> -->
+                            </td>
+                       {% else %}
+                            <td>{{cursus.opleiding}}</td>
+                       {% endif %}
+                       </tr>
+                    {% endfor %}
+                </table>
             </div>
-            <h3>Work Experience</h3>
+            <div style="height:3px;"><br></div>
+
+            <h3>Werkervaring</h3>
             {% for opdracht in opdracht_list %}
                 <div class="werkervaring">
                     <h4><i class="fa fa-calendar" style="color:blue;margin-left:10px;padding-right:10px"></i> {{opdracht.startdatum|date:"M Y"}} &nbsp-&nbsp {{opdracht.einddatum|date:"M Y"}}</h4>
