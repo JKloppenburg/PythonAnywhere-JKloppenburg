@@ -18,7 +18,7 @@ def cv(request):
     opdracht_list = Opdracht.objects.order_by('-startdatum').all().prefetch_related(Prefetch('functie',queryset=Functie.objects.all(), to_attr='functie_list'))
     opdracht_list = opdracht_list.annotate(aantal_functies=Count('functie'))
     activiteit_list = Activiteit.objects.order_by('startdatum','functienaam','rijnummer').all()
-    opleidingen_list = Opleidingen.objects.order_by('startjaar', 'opleiding_id').all()
+    opleidingen_list = Opleidingen.objects.order_by('-startjaar', 'opleiding_id').all()
 
     context = {
         'opdracht_list': opdracht_list,
