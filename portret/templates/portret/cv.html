@@ -138,6 +138,28 @@
                     <h4><i class="fa fa-calendar" style="color:blue;margin-left:10px;padding-right:10px"></i> {{opdracht.startdatum|date:"M Y"}} &nbsp-&nbsp {{opdracht.einddatum|date:"M Y"}}</h4>
                     <p><i class="fa fa-building" style="margin-left:10px;padding-right:10px"></i> {{opdracht.bedrijf}}<br>
                        <i class="fa fa-globe" style="margin-left:10px;padding-right:10px"></i> {{opdracht.stad}}<br>
+
+                        {% if opdracht.getuigschrift != "" %}
+                            <script>
+                            window.addEventListener('mouseup', function(event){
+                                var box = document.getElementById("popup2{{opdracht.opdracht_id}}");
+                                if (event.target != box) {box.style.display = 'none';}
+                                });
+                            </script>
+                            <div class="popup" id="popup2{{opdracht.opdracht_id}}">
+                               <div class="popup-content">
+                                    <div class="close-btn" onclick="closePopup2{{opdracht.opdracht_id}}()">&times;</div>
+                                    <embed class="popup-doc" src="{% static opdracht.getuigschrift %}#toolbar=0&page=1" type="application/pdf" style="width: 100%; height:100%" />
+                               </div>
+                            </div>
+                            <button class=myBtn2 onclick="openPopup2{{opdracht.opdracht_id}}()"><i class="fa fa-file-signature" style="margin-left:10px;padding-right:10px"></i>Getuigschrift</button>
+                            <i class="fa fa-arrow-left" style="margin-left:10px;padding-right:10px">&nbsp (Klik om te openen)</i>
+                            <script>
+                            function closePopup2{{opdracht.opdracht_id}}(){document.getElementById("popup2{{opdracht.opdracht_id}}").style.display = 'none';}
+                            function openPopup2{{opdracht.opdracht_id}}(){document.getElementById("popup2{{opdracht.opdracht_id}}").style.display = 'block';}
+                            </script>
+                        {% endif %}
+
                     </p>
                     {% for functie in opdracht.functie_list %}
                         <div class="dropdown">

@@ -6,6 +6,8 @@ CREATE TABLE opdracht (
 	EindDatum DATE DEFAULT NULL,
 	Bedrijf VARCHAR(40) NOT NULL,
 	Stad VARCHAR(40) NOT NULL,
+	Opdracht_id INT NOT NULL,
+	Getuigschrift VARCHAR(80) DEFAULT NULL,
 	PRIMARY KEY (StartDatum)
 ) ENGINE=INNODB;
 
@@ -41,20 +43,20 @@ CREATE TABLE opleidingen (
 
 INSERT INTO opdracht 
 VALUES 
-	('2018-08-01', '2019-03-31', 'ING Bank', 'Amsterdam'),
-	('2018-01-22', '2018-07-31', 'ING Bank', 'Amsterdam'),
-	('2011-01-01', '2017-09-30', 'ATOS', 'Rijswijk & Zoetermeer'),
-	('2009-08-01', '2010-12-31', 'EuroShell', 'Rotterdam'),
-	('2009-01-01', '2009-05-31', 'Rabobank', 'Zeist'),
-	('2005-08-01', '2008-12-31', 'ATOS', 'Rijswijk'),
-	('2002-01-01', '2005-07-31', 'Rabobank', 'Utrecht'),
-	('2001-04-01', '2001-09-30', 'Rabobank', 'Zeist'),
-	('1998-09-01', '2001-03-31', 'Interpay', 'Utrecht'),
-	('1997-12-01', '1998-08-31', 'Rabobank', 'Zeist'),
-	('1995-09-01', '1997-11-30', 'ING Bank', 'Amsterdam'),
-	('1990-05-01', '1995-08-31', 'Fokker Aircraft b.v.', 'Schiphol Oost & Amsterdam Zuid-Oost'),
-	('1986-11-01', '1990-04-30', 'Min. van Defensie - Koninklijke Marine', 'Den Haag'),
-	('1985-08-01', '1986-10-31', 'Min. van Defensie', 'Den Haag & Maasland');
+	('2018-08-01', '2019-03-31', 'ING Bank', 'Amsterdam', 1, 'getuigschrift-2019-ING.pdf'),
+	('2018-01-22', '2018-07-31', 'ING Bank', 'Amsterdam', 2, ''),
+	('2011-01-01', '2017-09-30', 'ATOS', 'Rijswijk & Zoetermeer', 3, 'getuigschrift-2017-ATOS.pdf'),
+	('2009-08-01', '2010-12-31', 'EuroShell', 'Rotterdam', 4, 'Recognition-2010-SHELL.pdf'),
+	('2009-01-01', '2009-05-31', 'Rabobank', 'Zeist', 5, ''),
+	('2005-08-01', '2008-12-31', 'ATOS', 'Rijswijk', 6, 'getuigschrift-2008-ATOS.pdf'),
+	('2002-01-01', '2005-07-31', 'Rabobank', 'Utrecht', 7, 'getuigschrift-2005-Rabobank.pdf'),
+	('2001-04-01', '2001-09-30', 'Rabobank', 'Zeist', 8, ''),
+	('1998-09-01', '2001-03-31', 'Interpay', 'Utrecht', 9, 'ITIL bulletin-2000-Interpay.pdf'),
+	('1997-12-01', '1998-08-31', 'Rabobank', 'Zeist', 10, ''),
+	('1995-09-01', '1997-11-30', 'ING Bank', 'Amsterdam', 11, ''),
+	('1990-05-01', '1995-08-31', 'Fokker Aircraft b.v.', 'Schiphol Oost & Amsterdam Zuid-Oost', 12, 'getuigschrift-1995-Fokker.pdf'),
+	('1986-11-01', '1990-04-30', 'Min. van Defensie - Koninklijke Marine', 'Den Haag', 13, 'getuigschrift-1990-Marine.pdf'),
+	('1985-08-01', '1986-10-31', 'Min. van Defensie', 'Den Haag & Maasland', 14, '');
 
 INSERT INTO functie
 VALUES

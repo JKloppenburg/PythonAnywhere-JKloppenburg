@@ -2,34 +2,17 @@
 # You'll have to do the following manually to clean this up:
 #   * Rearrange models' order
 #   * Make sure each model has one field with primary_key=True
-#   * Make sure each ForeignKey has `on_delete` set to the desired behavior.
+#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-from django.db.models.deletion import CASCADE, DO_NOTHING
-from compositefk.fields import CompositeForeignKey, CompositeOneToOneField
 
-class Functie(models.Model):
-    startdatum = models.ForeignKey('Opdracht', models.DO_NOTHING, db_column='StartDatum', primary_key=True, related_name = 'functie' )  # Field name made lowercase.
-    functienaam = models.CharField(db_column='FunctieNaam', max_length=40)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'functie'
-        unique_together = (('startdatum', 'functienaam'),)
 
 class Activiteit(models.Model):
-    startdatum = models.DateField(db_column='StartDatum', primary_key=True)  # Field name made lowercase.
-    functienaam = models.CharField(db_column='FunctieNaam', max_length = 40)  # Field name made lowercase.
+    startdatum = models.OneToOneField('Functie', models.DO_NOTHING, db_column='StartDatum', primary_key=True)  # Field name made lowercase.
+    functienaam = models.ForeignKey('Functie', models.DO_NOTHING, db_column='FunctieNaam')  # Field name made lowercase.
     rijnummer = models.IntegerField(db_column='RijNummer')  # Field name made lowercase.
     detailregel = models.TextField(db_column='DetailRegel', blank=True, null=True)  # Field name made lowercase.
-    #virtual field
-    functie = CompositeOneToOneField(
-        Functie,
-        on_delete = CASCADE,
-        related_name = 'activiteit',
-        to_fields=('startdatum','functienaam')
-    )
 
     class Meta:
         managed = False
@@ -147,15 +130,23 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
+class Functie(models.Model):
+    startdatum = models.OneToOneField('Opdracht', models.DO_NOTHING, db_column='StartDatum', primary_key=True)  # Field name made lowercase.
+    functienaam = models.CharField(db_column='FunctieNaam', max_length=40)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'functie'
+        unique_together = (('startdatum', 'functienaam'),)
+
 
 class Opdracht(models.Model):
     startdatum = models.DateField(db_column='StartDatum', primary_key=True)  # Field name made lowercase.
     einddatum = models.DateField(db_column='EindDatum', blank=True, null=True)  # Field name made lowercase.
     bedrijf = models.CharField(db_column='Bedrijf', max_length=40)  # Field name made lowercase.
     stad = models.CharField(db_column='Stad', max_length=40)  # Field name made lowercase.
-    opdracht_id = models.IntegerField(db_column = 'Opdracht_id')  # Field name made lowercase.
-    getuigschrift = models.CharField(db_column = 'Getuigschrift', max_length = 80, blank = True,
-                                     null = True)  # Field name made lowercase.
+    opdracht_id = models.IntegerField(db_column='Opdracht_id')  # Field name made lowercase.
+    getuigschrift = models.CharField(db_column='Getuigschrift', max_length=80, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -172,5 +163,3 @@ class Opleidingen(models.Model):
     class Meta:
         managed = False
         db_table = 'opleidingen'
-
-
