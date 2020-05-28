@@ -58,6 +58,8 @@ VALUES
 	('1986-11-01', '1990-04-30', 'Min. van Defensie - Koninklijke Marine', 'Den Haag', 13, 'getuigschrift-1990-Marine.pdf'),
 	('1985-08-01', '1986-10-31', 'Min. van Defensie', 'Den Haag & Maasland', 14, '');
 
+DELETE FROM functie;
+ALTER TABLE functie AUTO_INCREMENT = 1;
 INSERT INTO functie
 VALUES
 	('2018-08-01', 'IT Engineer'),
@@ -92,12 +94,13 @@ VALUES
 	('1995-09-01', 'Applicatie Beheerder'),
 	('1990-05-01', 'DBA'),
 	('1990-05-01', 'Tester'),
-	('1986-11-01', 'Programmer'),
+	('1986-11-01', 'Programmeur'),
 	('1986-11-01', 'DBA'),
 	('1985-08-01', 'System Developer')
 ;
 
 DELETE FROM activiteit;
+ALTER TABLE activiteit AUTO_INCREMENT = 1;
 INSERT INTO activiteit
 VALUES
 	('2018-08-01', 'IT Engineer', 1, 'Voorbereiden data migratie. Configuratiewijzigingen ten opzichte van de huidige machine in kaart gebracht. De impact van de wijzigingen op de inrichting en het beheer bepaald. Met verschillende partijen overleg hierover gepleegd.'),
@@ -209,7 +212,7 @@ VALUES
 	('1990-05-01', 'DBA', 6, 'Oplossen problemen in IDMS netwerk database, waaronder een broken chain.'),
 	('1990-05-01', 'DBA', 7, 'Deelname aan het project implementatie Factory Control Management System op  het TANDEM platform. Behalve het inrichten en in gebruik nemen van het aangeschafte fabrieksbesturingssoftwarepakket behelsde dit ook het implementeren en tunen van een TANDEM platform'),
 	('1990-05-01', 'Tester', 1, 'Testen van nieuwe releases.'),
-	('1986-11-01', 'Programmer', 1, 'COBOL programma’s ontworpen, geschreven en getest.'),
+	('1986-11-01', 'Programmeur', 1, 'COBOL programma’s ontworpen, geschreven en getest.'),
 	('1986-11-01', 'DBA', 1, 'Beheer van een IDMS (netwerk) database.'),
 	('1986-11-01', 'DBA', 2, 'Verantwoordelijk voor het plannen, coördineren en implementeren van database wijzigingen.'),
 	('1985-08-01', 'System Developer', 1, 'Urgentie opleiding tot Systeem Ontwerper gevolgd. Dit bestond uit het behalen van AMBI modules, het volgen van interne opleidingen en het uitvoeren van stage opdrachten.')
@@ -221,7 +224,7 @@ ALTER TABLE opleidingen AUTO_INCREMENT = 1;
 INSERT INTO opleidingen(Startjaar, Eindjaar, Opleiding, Document)
 VALUES
 	('1975', '1981', 'VWO', 'VWO diploma.pdf'),
-	('1981', '1985', 'Japanologie aan de Rijksuniversiteit te Leiden (niet afgerond', ''),
+	('1981', '1985', 'Japanologie aan de Rijksuniversiteit te Leiden (niet afgerond)', ''),
 	('1985', '1989', 'AMBI (HBO)', 'AMBI diploma.pdf'),
 	('1985', '1989', 'afgerond met de volgende modules: B1, B2, HS1, HS4, I1, I2, S1, S3, T2', ''),
 	('1987', '2007', 'Overige cursussen', 'Overige-cursussen.pdf'),
