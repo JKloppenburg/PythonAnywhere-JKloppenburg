@@ -435,3 +435,11 @@ table, tr, td {
     margin-bottom: 8px;
 }
 
+u1.list-group {
+    width: 100%;
+    float: left;
+    font: 20px source-sans-pro;
+    color: black;
+    margin-left: 15pt;
+    list-style-type: square;
+}

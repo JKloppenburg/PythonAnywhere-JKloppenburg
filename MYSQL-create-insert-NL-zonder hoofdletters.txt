@@ -43,25 +43,27 @@ CREATE TABLE opleidingen (
 
 INSERT INTO opdracht 
 VALUES 
-	('2018-08-01', '2019-03-31', 'ING Bank', 'Amsterdam', 1, 'getuigschrift-2019-ING.pdf'),
-	('2018-01-22', '2018-07-31', 'ING Bank', 'Amsterdam', 2, ''),
-	('2011-01-01', '2017-09-30', 'ATOS', 'Rijswijk & Zoetermeer', 3, 'getuigschrift-2017-ATOS.pdf'),
-	('2009-08-01', '2010-12-31', 'EuroShell', 'Rotterdam', 4, 'Recognition-2010-SHELL.pdf'),
-	('2009-01-01', '2009-05-31', 'Rabobank', 'Zeist', 5, ''),
-	('2005-08-01', '2008-12-31', 'ATOS', 'Rijswijk', 6, 'getuigschrift-2008-ATOS.pdf'),
-	('2002-01-01', '2005-07-31', 'Rabobank', 'Utrecht', 7, 'getuigschrift-2005-Rabobank.pdf'),
-	('2001-04-01', '2001-09-30', 'Rabobank', 'Zeist', 8, ''),
-	('1998-09-01', '2001-03-31', 'Interpay', 'Utrecht', 9, 'ITIL bulletin-2000-Interpay.pdf'),
-	('1997-12-01', '1998-08-31', 'Rabobank', 'Zeist', 10, ''),
-	('1995-09-01', '1997-11-30', 'ING Bank', 'Amsterdam', 11, ''),
-	('1990-05-01', '1995-08-31', 'Fokker Aircraft b.v.', 'Schiphol Oost & Amsterdam Zuid-Oost', 12, 'getuigschrift-1995-Fokker.pdf'),
-	('1986-11-01', '1990-04-30', 'Min. van Defensie - Koninklijke Marine', 'Den Haag', 13, 'getuigschrift-1990-Marine.pdf'),
-	('1985-08-01', '1986-10-31', 'Min. van Defensie', 'Den Haag & Maasland', 14, '');
+	('2020-10-19', '2021-03-31', 'ING Bank', 'Amsterdam (volledig remote)', 1, ''),
+	('2018-08-01', '2019-03-31', 'ING Bank', 'Amsterdam', 2, 'getuigschrift-2019-ING.pdf'),
+	('2018-01-22', '2018-07-31', 'ING Bank', 'Amsterdam', 3, ''),
+	('2011-01-01', '2017-09-30', 'ATOS', 'Rijswijk & Zoetermeer', 4, 'getuigschrift-2017-ATOS.pdf'),
+	('2009-08-01', '2010-12-31', 'EuroShell', 'Rotterdam', 5, 'Recognition-2010-SHELL.pdf'),
+	('2009-01-01', '2009-05-31', 'Rabobank', 'Zeist', 6, ''),
+	('2005-08-01', '2008-12-31', 'ATOS', 'Rijswijk', 7, 'getuigschrift-2008-ATOS.pdf'),
+	('2002-01-01', '2005-07-31', 'Rabobank', 'Utrecht', 8, 'getuigschrift-2005-Rabobank.pdf'),
+	('2001-04-01', '2001-09-30', 'Rabobank', 'Zeist', 9, ''),
+	('1998-09-01', '2001-03-31', 'Interpay', 'Utrecht', 10, 'ITIL bulletin-2000-Interpay.pdf'),
+	('1997-12-01', '1998-08-31', 'Rabobank', 'Zeist', 11, ''),
+	('1995-09-01', '1997-11-30', 'ING Bank', 'Amsterdam', 12, ''),
+	('1990-05-01', '1995-08-31', 'Fokker Aircraft b.v.', 'Schiphol Oost & Amsterdam Zuid-Oost', 13, 'getuigschrift-1995-Fokker.pdf'),
+	('1986-11-01', '1990-04-30', 'Min. van Defensie - Koninklijke Marine', 'Den Haag', 14, 'getuigschrift-1990-Marine.pdf'),
+	('1985-08-01', '1986-10-31', 'Min. van Defensie', 'Den Haag & Maasland', 15, '');
 
 DELETE FROM functie;
 ALTER TABLE functie AUTO_INCREMENT = 1;
 INSERT INTO functie
 VALUES
+	('2020-10-19', 'Data Engineer / BI Developer'),
 	('2018-08-01', 'IT Engineer'),
 	('2018-08-01', 'Data Engineer'),
 	('2018-01-22', 'IT Engineer'),
@@ -103,6 +105,14 @@ DELETE FROM activiteit;
 ALTER TABLE activiteit AUTO_INCREMENT = 1;
 INSERT INTO activiteit
 VALUES
+	('2020-10-19', 'Data Engineer / BI Developer', 1, 'DataMart bouwen in Microsoft SQL Server voor analyse van financiële gegevens, budgetten, werkelijke en voorspelde kosten.'),
+	('2020-10-19', 'Data Engineer / BI Developer', 2, 'Ten behoeve van de dataloads ETL’s procedures ingericht en gedocumenteerd.'),
+	('2020-10-19', 'Data Engineer / BI Developer', 3, 'Met behulp van SSIS en Visual Studio packages samengesteld en query’s en Stored Procedures gebouwd in SSMS.'),
+	('2020-10-19', 'Data Engineer / BI Developer', 4, 'Interactief Power BI dashboard gerealiseerd om de uitkomst van Data Quality checks overzichtelijk te visualiseren met alle benodigde informatie.'),
+	('2020-10-19', 'Data Engineer / BI Developer', 5, 'Werkzaamheden zijn Agile/scrum uitgevoerd; Story’s opstellen en korte wekelijkse sprints met gebruik van ServiceNow.'), 
+	('2020-10-19', 'Data Engineer / BI Developer', 6, 'Overleg met de business om eisen en wensen duidelijk te krijgen en te realiseren.'), 
+	('2020-10-19', 'Data Engineer / BI Developer', 7, 'Documentatie opstellen voor een goede overdracht.'),
+	('2020-10-19', 'Data Engineer / BI Developer', 8, 'M.b.t. versiebeheer en implementatie is gebruik gemaakt van GIT, Sourcetree, Visual Studio en TFS'),
 	('2018-08-01', 'IT Engineer', 1, 'Voorbereiden data migratie. Configuratiewijzigingen ten opzichte van de huidige machine in kaart gebracht. De impact van de wijzigingen op de inrichting en het beheer bepaald. Met verschillende partijen overleg hierover gepleegd.'),
 	('2018-08-01', 'IT Engineer', 2, 'Security op de nieuwe machines ingericht conform de ING werkwijze.'),
 	('2018-08-01', 'Data Engineer', 1, 'Oplossen performance problemen meestal m.b.t. database access (SQL) in COBOL programmatuur.'),
@@ -218,6 +228,7 @@ VALUES
 	('1985-08-01', 'System Developer', 1, 'Urgentie opleiding tot Systeem Ontwerper gevolgd. Dit bestond uit het behalen van AMBI modules, het volgen van interne opleidingen en het uitvoeren van stage opdrachten.')
 ;
 
+
 DELETE FROM opleidingen;
 ALTER TABLE opleidingen AUTO_INCREMENT = 1;
 
@@ -234,9 +245,27 @@ VALUES
 	('2005', '2007', '- HP Certified Systems Engineer', 'HP Certified Systems Engineer.pdf'),
 	('2005', '2007', '- HP Certified Systems Developer', 'HP Certified Systems Developer.pdf'),
 	('2005', '2007', '- HP Accredited Systems Engineer', 'HP Accredited Systems Engineer.pdf'),
-	('2019', '2019', 'Power BI (Microsoft Learn: Analytics rapporten maken en gebruiken met Power BI)', 'Analytics-rapporten maken en gebruiken met Power BI - Learn _ Microsoft Docs.pdf'),
-	('2019', '2019', 'Azure (Microsoft Learn: Basisinformatie over Azure)', 'Basisinformatie over Azure - Learn _ Microsoft Docs.pdf'),
-	('2020', '2020', '365 Data Science (mee bezig)', 'combine-all-365DataScience-certificates.pdf')
+	('2019', '2020', 'Power BI (Microsoft Learn: Analytics rapporten maken en gebruiken met Power BI)', 'Analytics-rapporten maken en gebruiken met Power BI - Learn _ Microsoft Docs.pdf'),
+	('2019', '2020', 'Azure (Microsoft Learn: Basisinformatie over Azure)', 'Basisinformatie over Azure - Learn _ Microsoft Docs.pdf'),
+	('2019', '2020', '365 Data Science modules:', ''),
+	('2019', '2020', '-	Intro to Data and Data Science', '365 certificate-of-completion-for-intro-to-data-and-data-science.pdf'), 
+	('2019', '2020', '- PowerBI', '365 certificate-of-completion-for-powerbi.pdf'),
+	('2019', '2020', '- Probability', '365 certificate-of-completion-for-probability.pdf'),
+	('2019', '2020', '- Statistics', '365 certificate-of-completion-for-statistics.pdf'),
+	('2019', '2020', '- Tableau', '365 certificate-of-completion-for-tableau.pdf'), 
+	('2019', '2020', '- Introduction to Microsoft Excel', '365 certificate-of-completion-for-introduction-to-microsoft-excel.pdf'), 
+	('2019', '2020', '- Advanced Microsoft Excel', '365 certificate-of-completion-for-advanced-microsoft-excel.pdf'), 
+	('2019', '2020', '- SQL', '365 certificate-of-completion-for-sql.pdf'), 
+	('2019', '2020', '- SQL + Tableau', '365 certificate-of-completion-for-sql-tableau.pdf'), 
+	('2019', '2020', '- Introduction to Python', '365 certificate-of-completion-for-introduction-to-python.pdf'), 
+	('2019', '2020', '- Python programmer bootcamp', '365 certificate-of-completion-for-the-python-programmer-bootcamp.pdf'),
+	('2019', '2020', '- Git & GitHub', '365 certificate-of-completion-for-git-and-github.pdf'), 
+	('2019', '2020', '- Introduction to Business Analytics', '365 certificate-of-completion-for-introduction-to-business-analytics.pdf'),
+	('2020', '2021', 'Udemy cursussen:', ''), 
+	('2020', '2021', '- Advanced T-SQL for SQL Server Administrator', 'Udemy Advanced T-SQL For SQL Server Administrator.pdf'),
+	('2020', '2021', '- SQL Server Administration (SQL Server Integration Services)', 'Udemy SQL Server Administration (SQL Server Integration Services).pdf'),  
+	('2020', '2021', '- Become an SQL Developer - Learn SSRS, SSIS, SSAS, T-SQL, DW', 'Udemy Become an SQL Developer - Learn SSRS SSIS SSAS T-SQL DW.pdf'),
+	('2020', '2021', '- Microsoft SQL Server Integration Services (SSIS)', 'Udemy Microsoft SQL Server Integration Services (SSIS) Training.pdf'),
+	('2020', '2021', '- Git Essentials - Learn Git with Bitbucket and Sourcetree', 'Udemy Git Essentials - Learn Git with Bitbucket and Sourcetree.pdf'),
+	('2020', '2021', '- SQL Server Administration Part 1)', 'Udemy SQL Server Administration Part1.pdf')
 ;	
-
-
